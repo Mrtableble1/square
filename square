@@ -1,0 +1,45 @@
+import pygame
+
+HEIGHT = 800
+WIDTH = 800
+TITLE = "The Square"
+screen = pygame.display.set_mode((WIDTH,HEIGHT))
+pygame.display.set_caption(TITLE)
+
+
+class Square():
+    def __init__(self,c,y,x,h,w):
+        self.colour = c
+        self.y = y
+        self.x = x
+        self.h = h
+        self.w = w
+
+    def draw(self):
+        pygame.draw.rect(screen,self.colour,(self.x,self.y,self.w,self.h),0)
+
+cool_thing = Square("red",400,400,200,200)
+
+run = True
+
+screen.fill("blue")
+
+while run == True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            screen.fill("blue")
+        if event.type == pygame.MOUSEBUTTONUP:
+            cool_thing.draw()
+        if event.type == pygame.MOUSEMOTION:
+            pos = pygame.mouse.get_pos()
+            cool_thing1 = Square("green",pos[1],pos[0],10,10)
+            cool_thing1.draw()
+
+        
+
+        
+
+
+    pygame.display.flip()
